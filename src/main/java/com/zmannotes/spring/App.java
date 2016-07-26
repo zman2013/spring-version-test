@@ -1,31 +1,19 @@
 package com.zmannotes.spring;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.zmannotes.spring.worker.Worker;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Hello world!
  *
  */
-@SpringBootApplication
-public class App implements CommandLineRunner {
+public class App {
 
-    @Autowired
-    private Worker worker;
+    public static void main( String[] args ) {
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath:spring-config.xml");
+        Worker worker = (Worker) context.getBean("worker2");
+        System.out.println( worker.getConnectionInitSqls().size() );
 
-    /** main函数 */
-    public static void main( String[] args )
-    {
-        SpringApplication.run(App.class);
-    }
-
-    /** 程序入口 */
-    public void run(String... args) throws Exception {
-        worker.start();
     }
 
 }
