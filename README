@@ -1,4 +1,12 @@
-A SPRING BASIC APPLICATION.
+测试spring不同版本对注入的支持
 
-使用方式：
-./refactor.sh custom-group-name custom-project-name
+spring 3.1.1-RELEASE
+
+不支持
+  private List<String> field;
+  private void setField(Collection<String> values){
+    field.addAll( values );
+  }
+
+
+经测试至少从spring 3.2.8-RELEASE已经支持该使用方式。
